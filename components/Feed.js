@@ -2,11 +2,26 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import bg from '../public/assets/user.png'
 import { useState } from "react";
-
-
-
+import {app, db} from '../firebase'
+import {collection, query, doc, orderBy, onSnapshot, getDocs, QuerySnapshot, Timestamp} from 'firebase/firestore'
+import { data } from "autoprefixer";
+import moment from "moment";
+ 
 function Feed() {
-    
+
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    const collectionRef = collection(db, 'posts')
+
+    const q =  query(collectionRef, orderBy("timestamp", "desc"))
+
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      setPosts(QuerySnapshot.docs.map(doc => ({...doc.data(), id: doc.id, timestamp: doc.data().timestamp?.toDate().getTime()})))
+    })
+    return unsubscribe
+   }, [])
+   
   const Post = [
     {	
         id: 1,
@@ -40,28 +55,28 @@ function Feed() {
   return (
 
     <div className="items-center">
-    {Post.map(({id, name,desc, image, context}) => (
-    <div key={id} className="h-fit cursor-pointer border-b border-gray-200">
-      <div className="mx-4 z-50 py-8 h-fit cursor-pointer">
+    {posts.map(post=>
+    <div key={post.id} className="h-fit cursor-pointer border-b border-gray-200">
+      <div className="px-4 z-50 p-4 md:p-8 h-fit cursor-pointer">
        
         <div className="flex items-center justify-between">
           <a className="items-center flex">
             <Image
               className="rounded-2xl cursor-pointer border border-black"
-              src={image}
+              src="/assets/user.png"
               width={40}
               height={40}
             />
             <h2 className="mx-2 flex flex-col text-black font-semibold">
-              {name}
+                Guest
               <span className="font-light text-gray-500 text-sm">
-                Just now
+               {post.timestamp}
               </span>
             </h2>
           </a>
           <div className="flex items-center">
             <div className="text-center text-sm h-fit font-semibold border items-end border-gray-500 w-fit px-2 rounded bg-gray-100 ">
-              {context}
+             {post.category}
             </div>
             <div>
               <button className="bg-white mx-2 p-1 hover:bg-gray-100 rounded-lg">
@@ -90,14 +105,14 @@ function Feed() {
             </div>
           </div>
         </div>
-        <p className="my-4 mx-12">{desc}</p>
+        <p className="my-4 mx-12">{post.text}</p>
       </div>
       <div>
-        <div className="rounded items-start p-2 flex border bg-gray-100 h-fit border-gray-200 mx-6 ml-16">
+        <div className="rounded items-start p-2  w-[580px] flex border bg-gray-100 h-fit border-gray-200 mx-6 ml-16">
           <div>
-            <p className=" font-bold mr-24">portfolio</p>
+            <p className=" font-bold mr-24">{post.title || post.event || post.url}</p>
             <p className="text-gray-700 text-sm">
-              This is my portfolio.
+              {post.type} {post.company} {post.url} {post.image}
             </p>
           </div>
           
@@ -139,7 +154,7 @@ function Feed() {
           </svg>
         </a>
       </div>
-    </div> ))}
+    </div> )}
     </div>
   );
 }
