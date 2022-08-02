@@ -14,3 +14,10 @@
 - Create post and send
 - The context dropdown closes on clicking anywhere
 - Responsive design
+
+<h3> Future Scope </h3>
+
+- Like and comment functionality
+- The context actually shows on the label alongside 3 dot menu
+- Image upload
+
