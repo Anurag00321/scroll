@@ -20,3 +20,7 @@
 - Like and comment functionality
 - The context actually shows on the label alongside 3 dot menu
 - Image upload for post
+<<<<<<< HEAD
+=======
+
+>>>>>>> 26764f71afce7ab4c88df44687bbfd8bf72d0e96
