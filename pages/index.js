@@ -8,8 +8,12 @@ import Sidebar from "../components/sidebar";
 import Aside from "../components/aside";
 import Context from "../components/Context";
 import Feed from "../components/Feed";
+import { doc } from "firebase/firestore";
+import { useEffect } from "react";
+import Login from "../components/Login";
 
 export default function Home() {
+  const User = null;
   return (
     <div className={styles.container}>
       <Head>
@@ -20,16 +24,16 @@ export default function Home() {
       <div className="w-full  bg-gray-100">
         <Header />
 
-        <div className="xl:max-w-screen h-screen flex mx-auto  overflow-hidden justify-center mt-0 pl-48">
+        <div className="xl:max-w-screen h-fit flex mx-auto justify-center mt-0 lg:pl-48">
           <Sidebar />
-          <div className="w-full md:w-5/6 border-gray-200 overflow-y-scroll border-l border-r">
-            <div className="bg-white w-full flex relative">
-              <div className="lg:w-[680px] mb-32 border-gray-200 relative mt-8 lg:mb-16 bg-white">
+          <div className="w-full md:w-5/6  border-gray-200 border-r">
+            <div className="bg-white w-fit border-l flex relative">
+              <div className="lg:w-[680px] bordr-r w-full outline-none mb-32 border-gray-200 relative mt-8 lg:mb-16 bg-white">
                 <Nav />
                 <Post />
                 <Feed />
               </div>
-              <div className="fixed -right-1">
+              <div className="fixed -right-1 bg-gray-100">
                 <Aside />
               </div>
             </div>

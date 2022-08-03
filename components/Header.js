@@ -17,11 +17,11 @@ function Header() {
               <div aria-hidden="true" className="relative flex rounded">
                 <div
                   aria-hidden="true"
-                  className="flex border border-gray-400 items-center py-1.5 px-2 sm:w-96 rounded-md font-light text-base bg-white  focus-within:border-gray-300  focus-within:bg-white"
+                  className="flex border  border-gray-400 items-center py-0.5 px-2 sm:w-96 rounded-md font-light text-base bg-white  focus-within:border-gray-300  focus-within:bg-white"
                 >
-                  <label htmlFor="search" className="text-gray-600 ">
+                  <label htmlFor="search" className="text-gray-600">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="http://www.w3.org/2000/svg" 
                       className="text-gray-500 focus:text-primary"
                       width="16"
                       height="16"

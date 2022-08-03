@@ -3,6 +3,9 @@ import Image from "next/image";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 
+
+
+
 function Post() {
   const [count, setCount] = useState(0);
   const [show1, setShow1] = useState(false);
@@ -11,9 +14,11 @@ function Post() {
   const [details, setDetails] = useState(false);
   const [context, setContext] = useState("Add context");
   const [image, setImage] = useState(null);
+  const prevContext = useRef("Add context");
   const filepickerRef = useRef(null);
   const inputRef = useRef(null);
   const urlRef = useRef(null);
+  const btnRef = useRef();
 
   const addImage = (e) => {
     const reader = new FileReader();
@@ -60,7 +65,7 @@ function Post() {
 
   useEffect(() => {
     const closeDropdown = (e) => {
-      if (e.path[0].tagName !== "BUTTON") {
+      if (e.path[0] !== btnRef.current) {
         setShow2(false);
       }
     };
@@ -74,26 +79,102 @@ function Post() {
     {
       id: 1,
       name: "Opportunity",
-      image: "/assets/opportunity.png",
+      image: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon icon-tabler icon-tabler-briefcase"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <rect x="3" y="7" width="18" height="13" rx="2"></rect>
+          <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+          <line x1="12" y1="12" x2="12" y2="12.01"></line>
+          <path d="M3 13a20 20 0 0 0 18 0"></path>
+        </svg>
+      ),
       desc: "Let everyone know if you or someone is hiring",
     },
     {
       id: 2,
       name: "URL",
-      image: "/assets/url.png",
+      image: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon icon-tabler icon-tabler-link"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokewidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path>
+          <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path>
+        </svg>
+      ),
       desc: "Share URL of your project,article,profile,etc",
     },
     {
       id: 3,
       name: "Event",
-      image: "/assets/calendar.png",
+      image: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon icon-tabler icon-tabler-calendar-event"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+          <line x1="16" y1="3" x2="16" y2="7"></line>
+          <line x1="8" y1="3" x2="8" y2="7"></line>
+          <line x1="4" y1="11" x2="20" y2="11"></line>
+          <rect x="8" y="15" width="2" height="2"></rect>
+        </svg>
+      ),
       desc: "Hosting an event? Share with Peerlist community!",
     },
     {
       id: 4,
       name: "Book",
-      image: "/assets/book.png",
-      desc: "What are ypu reading? Any book recommendations?",
+      image: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon icon-tabler icon-tabler-book"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+          <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+          <line x1="3" y1="6" x2="3" y2="19"></line>
+          <line x1="12" y1="6" x2="12" y2="19"></line>
+          <line x1="21" y1="6" x2="21" y2="19"></line>
+        </svg>
+      ),
+      desc: "What are you reading? Any book recommendations?",
     },
   ];
 
@@ -102,8 +183,8 @@ function Post() {
     setHidden(true);
     setCount(0);
     removeImage();
-    inputRef.current.value = "";
-    urlRef.current.value = "";
+    post.text = "";
+    post.url = "";
   }
 
   function somefunc() {
@@ -111,17 +192,8 @@ function Post() {
     setShow2(false);
   }
 
-  /* function onSubmit() {
-    setHidden(true)
-    setShow2(false)
-    setContext("Add Context")
-    setCount(0)
-    inputRef.current.value = ""
-    alert("Post sent successfully")
-  } */
-
   return (
-    <div className="lg:mt-16 mt-10 rounded ">
+    <div className="lg:mt-16 mt-16 rounded">
       <div className="bg-gray-100 p-6 border-b border-gray-200">
         <div className="border rounded-lg border-gray-200 ">
           <div>
@@ -129,8 +201,8 @@ function Post() {
               <div className="flex flex-1 flex-col">
                 <div className="rounded-lg bg-white min-h-12 max-h-[620px] p-2 font-semibold text-gray-900 text-sm h-fit  resize-none placeholder:text-xs outline-none">
                   <form onChange={(e) => setCount(e.target.value.length)}>
-                    <label className="text-sm font-light mb-0.5 px-2">
-                      Write a post
+                    <label className="font-light text-sm mb-0.5 mx-2">
+                      Write a post...
                     </label>
                     <textarea
                       id="textarea"
@@ -143,7 +215,7 @@ function Post() {
                       onFocus={() => setShow1(true)}
                       maxLength={280}
                       rows="4"
-                      className="w-[620px] px-2 text-sm font-normal resize-none outline-none"
+                      className=" w-full h-fit px-2 text-sm font-normal outline-none resize-none"
                     ></textarea>
                   </form>
                   <input
@@ -356,32 +428,34 @@ function Post() {
                     </div>
                     <div className="flex gap-2  font-semibold items-center">
                       <div onClick={() => setShow2(!show2)}>
-                        <button className="flex bg-white h-8 w-auto justify-center items-center px-2 py-1 border border-gray-200 rounded">
-                        {context}
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///8AAADm5uZOTk7q6upQUFDl5eVKSkpSUlJLS0tGRkZhYWFBQUE1NTXs7OwZGRkmJiadnZ2CgoLFxcURERG3t7cLCwtqamrCwsJWVlba2tqPj4+WlpZeXl6lpaV1dXUU3MJPAAAD+UlEQVR4nO3d61LjMAwF4ARaChQobZfL3uD933IrQjZJ7aixY1tS5nw/0zITzZEtN9ChqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMWu23D4/rw1H6PpI4HtaPD9v9qndpta2//XgRu69UXl7bYrZP7bVj3fMmeXcJbPvFfPfkez1wL3uHM90Pi3mna6v6zFr6LmdYnxdDjXp9frHeSN9ntI1Ty8+q+uVcrOtr6TuN5IZV1zfVb8/V+k76XqPc+Ur54wnWaoneAk9t+uq9brBRfS16sqv81+1tN/5ePKl2Y6/YStEZE12Gf8deMjX670er2FYfo68ZSnFkDZIP90jTY2Utjq7B+utQ88m8bGNo+MdE40BvYF43kSKX4O7rHTe2S+QKrK+a97Alam9UrkVPh9JvV3ZTnJIgYVPUPDSYMdFLkHAzQ/HoHx/0J6vhe9lG1boW2TV4df5ugymGJEjMpRiWIGFT1LejsruoJ0FiKsXwBAlboq6hwY6J0QINNWpMizaMpBibIDExNELHxJCBFOckSNSvxfg12FKe4twECZui9Fxk5+CkBIni0R836F1siZK/X0zRog2lKc7fZDrsp36pFNMlSBQOjXmD3qUuxbQJEmVDI+UabKlKcfTXZ9EJEkWnG7ZFIxMkakpMvwZbSkZ/nhZtqBj9ac6iY9jt5jbF/V+UM0EiPvpzjIkh4RRzJ0jYFHPvqHnXYEswxRIJErGhkWvQu4RKzDfoXWyJuRq1VIs2BA5wZTaZTvHtpmyCpPDnxfyD3lU0xdviCZKCo7/cmBgqlqJMgqTQXGQ3mYwJkiIllt9F+wqMfrkWbWQf/VKbTCfzdiOdIMn6qV9i0LsypqghQZLtACe/BluZHvhrSZBk2VElB70rQ4myg96V/HSjqUUbiR/469lkOkmHhr4EScLRr2PQu5KlqDNBkmj0l36qFiLJt220jYmhBDuqxl20b3aJJR/dx5l5utHdoo1ZX+7TOiaGZnzSsJAgif4L/9R/jJdPZIpWEiRRBzgba7AVsaPqHxNDwTuq5qOaX2CJU7+FrUnQ6SbV1wrKCkjR1ibTmZyitU2mM3H02xn0rklDw9Kgd0341G9vTAxdfI6q95nMVGyKt3yBBhIkbIksIwVeaFSGiRZtxKVoJkESk6KhBEl4iqYSJKEpGkuQhKVoLkESkqLBBMn0FE0mSKamaDRBMq1EwwVOa1SzLdq4nKLpBMmlFI0nSPgUzSdIuBQXkCAZT3ERCZKxFBeSIPGXuJgEia/ERRXoK3FBLdo4324WliB5eu7V9/x0+QcM2v8vcC99K9m8vG0eN5/2/2sWAAAAAAAAAAAAAAAAAAAAAAAAAAAAQD7/AD33Iwpcu22+AAAAAElFTkSuQmCC" className="w-3 h-3 mx-2"/>
+                        <button onChange={() => setPost({...post, category: e.target.value})}
+                           ref={btnRef}
+                          className="flex bg-white h-8 w-auto justify-center items-center px-2 py-1 border border-gray-200 rounded"
+                        >
+                          {context}
+                          <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///8AAADm5uZOTk7q6upQUFDl5eVKSkpSUlJLS0tGRkZhYWFBQUE1NTXs7OwZGRkmJiadnZ2CgoLFxcURERG3t7cLCwtqamrCwsJWVlba2tqPj4+WlpZeXl6lpaV1dXUU3MJPAAAD+UlEQVR4nO3d61LjMAwF4ARaChQobZfL3uD933IrQjZJ7aixY1tS5nw/0zITzZEtN9ChqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMWu23D4/rw1H6PpI4HtaPD9v9qndpta2//XgRu69UXl7bYrZP7bVj3fMmeXcJbPvFfPfkez1wL3uHM90Pi3mna6v6zFr6LmdYnxdDjXp9frHeSN9ntI1Ty8+q+uVcrOtr6TuN5IZV1zfVb8/V+k76XqPc+Ur54wnWaoneAk9t+uq9brBRfS16sqv81+1tN/5ePKl2Y6/YStEZE12Gf8deMjX670er2FYfo68ZSnFkDZIP90jTY2Utjq7B+utQ88m8bGNo+MdE40BvYF43kSKX4O7rHTe2S+QKrK+a97Alam9UrkVPh9JvV3ZTnJIgYVPUPDSYMdFLkHAzQ/HoHx/0J6vhe9lG1boW2TV4df5ugymGJEjMpRiWIGFT1LejsruoJ0FiKsXwBAlboq6hwY6J0QINNWpMizaMpBibIDExNELHxJCBFOckSNSvxfg12FKe4twECZui9Fxk5+CkBIni0R836F1siZK/X0zRog2lKc7fZDrsp36pFNMlSBQOjXmD3qUuxbQJEmVDI+UabKlKcfTXZ9EJEkWnG7ZFIxMkakpMvwZbSkZ/nhZtqBj9ac6iY9jt5jbF/V+UM0EiPvpzjIkh4RRzJ0jYFHPvqHnXYEswxRIJErGhkWvQu4RKzDfoXWyJuRq1VIs2BA5wZTaZTvHtpmyCpPDnxfyD3lU0xdviCZKCo7/cmBgqlqJMgqTQXGQ3mYwJkiIllt9F+wqMfrkWbWQf/VKbTCfzdiOdIMn6qV9i0LsypqghQZLtACe/BluZHvhrSZBk2VElB70rQ4myg96V/HSjqUUbiR/469lkOkmHhr4EScLRr2PQu5KlqDNBkmj0l36qFiLJt220jYmhBDuqxl20b3aJJR/dx5l5utHdoo1ZX+7TOiaGZnzSsJAgif4L/9R/jJdPZIpWEiRRBzgba7AVsaPqHxNDwTuq5qOaX2CJU7+FrUnQ6SbV1wrKCkjR1ibTmZyitU2mM3H02xn0rklDw9Kgd0341G9vTAxdfI6q95nMVGyKt3yBBhIkbIksIwVeaFSGiRZtxKVoJkESk6KhBEl4iqYSJKEpGkuQhKVoLkESkqLBBMn0FE0mSKamaDRBMq1EwwVOa1SzLdq4nKLpBMmlFI0nSPgUzSdIuBQXkCAZT3ERCZKxFBeSIPGXuJgEia/ERRXoK3FBLdo4324WliB5eu7V9/x0+QcM2v8vcC99K9m8vG0eN5/2/2sWAAAAAAAAAAAAAAAAAAAAAAAAAAAAQD7/AD33Iwpcu22+AAAAAElFTkSuQmCC"
+                            className="w-3 h-3 mx-2"
+                          />
                         </button>
-                        
 
                         {show2 ? (
-                          <div className="bg-white font-normal absolute mt-2 w-fit z-20 flex flex-col rounded-lg border-t-2 border-l-2 border-b-4 border-r-4 border-black">
-                            <div className="w-fit mx-2 overflow-hidden relative justify-center items-center h-fit mb-2">
+                          <div className="bg-white font-normal absolute mt-2 w-fit z-20 flex flex-col rounded-xl border-t-2 border-l-2 border-b-[6px] border-r-[6px] border-black">
+                            <div className="w-fit mx-2 overflow-hidden relative justify-center items-center h-[194px] mb-2">
                               {Context.map(({ name, image, desc, style }) => (
                                 <div
                                   key={name}
-                                  className="py-2 bg-transparent my-1 h-12"
+                                  className="py-2 bg-transparent h-12"
                                 >
                                   <li
                                     className={`flex cursor-pointer h-10`}
                                     onClick={() => somefunc()}
-                                  >
-                                    <Image
-                                      className=""
-                                      src={image}
-                                      width={20}
-                                      height={20}
-                                    ></Image>
+                                  ><a className="py-2">
+                                    {image}
+                                    </a>
                                     <div
                                       className="flex flex-col h-8"
+                                      value={post.category}
                                       onClick={() => setContext(`${name}`)}
                                     >
                                       <a className="font-semibold mx-2">

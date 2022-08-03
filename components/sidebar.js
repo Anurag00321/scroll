@@ -1,8 +1,10 @@
 import React from "react";
+import a from 'next/link'
+
 
 function Sidebar() {
   return (
-    <div className="min-w-200 fixed left-0 mr-1 lg:block hidden">
+    <div className="min-w-200 fixed left-0 lg:block hidden">
       <div className="w-72 pl-20 min-w-64 pt-16 pb-10 pr-3 flex flex-col lg:justify-between bg-gray-100 right-0 top-0 h-screen">
         <div className="lg:block hidden">
         <div className="lg:hidden flex justify-end pb-6">
@@ -29,8 +31,8 @@ function Sidebar() {
           <ul className="mt-2">
             <li className="mb-2">
               <a
-                className="flex items-center px-3 py-2 hover:bg-gray-300 bg-gray-300 text-primary rounded font-medium"
-                href="/#"
+                className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 bg-gray-300 text-primary rounded font-medium"
+                
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +67,8 @@ function Sidebar() {
             </li>
             <li className="mb-2">
               <a
-                className="flex items-center px-3 py-2 hover:bg-gray-200 text-primary rounded font-normal"
-                href="/network"
+                className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-200 text-primary rounded font-normal"
+                
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +99,8 @@ function Sidebar() {
             </li>
             <li className="mb-2">
               <a
-                className="flex items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
-                href="/find"
+                className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
+                
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +127,22 @@ function Sidebar() {
             </li>
             <li className="mb-2">
               <a
-                className="flex items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
-                href="#"
+                className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
+                
+              >
+               <svg xmlns="http://www.w3.org/2000/svg" className="flex-none" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><desc>Download more icon variants from https://tabler-icons.io/i/briefcase</desc><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path><line x1="12" y1="12" x2="12" y2="12.01"></line><path d="M3 13a20 20 0 0 0 18 0"></path></svg>
+                <span className=" text-base capitalise ml-2">
+                  Jobs
+                </span>
+                <span className="py-0.5 flex items-center text-xs leading-2 text-center whitespace-nowrap align-top font-normal bg-green-600 text-white rounded-full ml-2 px-2">
+                  New
+                </span>
+              </a>
+            </li>
+            <li className="mb-2">
+              <a
+                className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
+                
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
