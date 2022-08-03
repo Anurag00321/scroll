@@ -1,5 +1,5 @@
 import React from "react";
-import a from 'next/link'
+import div from 'next/link'
 
 
 function Sidebar() {
@@ -30,7 +30,7 @@ function Sidebar() {
         </div>
           <ul className="mt-2">
             <li className="mb-2">
-              <a
+              <div
                 className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 bg-gray-300 text-primary rounded font-medium"
                 
               >
@@ -63,10 +63,10 @@ function Sidebar() {
                 <span className="py-0.5 flex items-center text-xs leading-2 text-center whitespace-nowrap align-top font-normal bg-gray-400 text-white rounded-full ml-2 px-1.5">
                   beta
                 </span>
-              </a>
+              </div>
             </li>
             <li className="mb-2">
-              <a
+              <div
                 className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-200 text-primary rounded font-normal"
                 
               >
@@ -95,10 +95,10 @@ function Sidebar() {
                 <span className="text-primary text-base capitalise ml-2">
                   My Network
                 </span>
-              </a>
+              </div>
             </li>
             <li className="mb-2">
-              <a
+              <div
                 className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
                 
               >
@@ -123,10 +123,10 @@ function Sidebar() {
                   <line x1="21" y1="21" x2="15" y2="15"></line>
                 </svg>
                 <span className="text-primary text-base capitalise ml-2">Find</span>
-              </a>
+              </div>
             </li>
             <li className="mb-2">
-              <a
+              <div
                 className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
                 
               >
@@ -137,10 +137,10 @@ function Sidebar() {
                 <span className="py-0.5 flex items-center text-xs leading-2 text-center whitespace-nowrap align-top font-normal bg-green-600 text-white rounded-full ml-2 px-2">
                   New
                 </span>
-              </a>
+              </div>
             </li>
             <li className="mb-2">
-              <a
+              <div
                 className="flex cursor-pointer items-center px-3 py-2 hover:bg-gray-300 text-primary rounded font-normal"
                 
               >
@@ -168,7 +168,7 @@ function Sidebar() {
                 <span className="text-primary text-base capitalise ml-2">
                   Profile
                 </span>
-              </a>
+              </div>
             </li>
           </ul>
         </div>
