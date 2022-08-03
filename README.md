@@ -19,5 +19,5 @@
 
 - Like and comment functionality
 - The context actually shows on the label alongside 3 dot menu
-- Image upload
+- Image upload for post
 
