@@ -40,6 +40,7 @@ function Post() {
     category: "",
     url: "",
     title: "",
+    image: "" ,
     type: "",
     company: "",
     apply: "",
@@ -57,6 +58,7 @@ function Post() {
       category: "",
       url: "",
       title: "",
+      image: "",
       type: "",
       company: "",
       apply: "",
@@ -365,7 +367,7 @@ function Post() {
                   </form>
                   <form hidden={context != "Book"}>
                     <input
-                      required
+                      required value={post.title} onChange={(e) => setPost({...post, title: e.target.value}) }
                       placeholder="Book name"
                       className="w-[600px] h-12 px-2 border border-gray-500 rounded outline-none mx-2"
                     />
@@ -413,7 +415,7 @@ function Post() {
                         </span>
                       </button>
                       <div onClick={() => setContext("Add Context")}>
-                        <button
+                        <button 
                           type="button"
                           onClick={() => setShow2(false)}
                           className="text-xs text-gray-500 cursor-pointer disabled:cursor-not-allowed mx-4"
