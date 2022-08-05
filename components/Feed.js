@@ -77,7 +77,7 @@ function Feed() {
       {posts.map((post) => (
         <div
           key={post.id} href="#"
-          className="h-fit overflow-hidden cursor-pointer border-b border-gray-200"
+          className="h-fit cursor-pointer border-b border-gray-200"
         >
           <div className="px-4 z-50 p-4 md:p-8 h-fit cursor-pointer">
             <div className="flex items-center justify-between">
@@ -128,10 +128,10 @@ function Feed() {
               </div>
             </div>
             <p className="my-4 mx-12">{post.text} </p>
-            <a href={post.url} className="my-4 mx-12 text-green-500 hover:underline" >{post.url}</a>
+            <a href={post.url} target="_blank" className="my-4 mx-12 text-green-500 hover:underline" >{post.url}</a>
           </div>
           <div>
-            <a href={post.url}>
+            <a href={post.url} target="_blank">
             <div className="rounded justify-between p-2 w-full lg:w-[580px] flex border bg-gray-100 h-fit lg:ml-16 border-gray-200 mx-6 ">
               <div className="items-start">
                 <p className=" font-bold mr-24 w-24">

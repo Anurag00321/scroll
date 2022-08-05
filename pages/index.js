@@ -26,7 +26,7 @@ export default function Home() {
 
         <div className="xl:max-w-screen h-fit flex mx-auto justify-center mt-0 lg:pl-48">
           <Sidebar />
-          <div className="w-full md:w-5/6  border-gray-200 border-r">
+          <div className="w-full md:w-5/6 border-gray-200 border-r">
             <div className="bg-white w-full border-l flex relative">
               <div className="lg:w-[680px] border-r w-full outline-none mb-32 border-gray-200 relative mt-8 lg:mb-16 bg-white">
                 <Nav />
