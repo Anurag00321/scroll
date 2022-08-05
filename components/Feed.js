@@ -132,7 +132,7 @@ function Feed() {
           </div>
           <div>
             <a href={post.url} target="_blank" rel="noreferrer">
-            <div className="rounded justify-between p-2 w-full lg:w-[580px] flex border bg-gray-100 h-fit lg:ml-16 border-gray-200 mx-6 ">
+            <div className="rounded justify-between  p-2 w-fit lg:w-[580px] flex border bg-gray-100 h-fit lg:ml-16 border-gray-200 mx-6 ">
               <div className="items-start">
                 <p className=" font-bold mr-24 w-24">
                   {post.title || post.event}</p>

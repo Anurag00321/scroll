@@ -432,7 +432,7 @@ function Post() {
                       <div onClick={() => setShow2(!show2)}>
                         <button onChange={() => setPost({...post, category: e.target.value})}
                            ref={btnRef}
-                          className="flex bg-white h-8 w-auto justify-center items-center px-2 py-1 border border-gray-200 rounded"
+                          className="flex bg-white h-8 w-fit justify-center items-center px-2 py-1 border border-gray-200 rounded"
                         >
                           {context}
                           <img
