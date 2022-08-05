@@ -13,6 +13,8 @@
 - Text input counter that counts the number of characters and stops accepting input if the count reaches 280.
 - Create post and send
 - The context dropdown closes on clicking anywhere
+- Input fields change after selecting specific context
+- Share button is disabled till selecting context
 - Responsive design
 
 <h3> Future Scope </h3>
@@ -20,7 +22,4 @@
 - Like and comment functionality
 - The context actually shows on the label alongside 3 dot menu
 - Image upload for post
-<<<<<<< HEAD
-=======
 
->>>>>>> 26764f71afce7ab4c88df44687bbfd8bf72d0e96
