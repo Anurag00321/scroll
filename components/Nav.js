@@ -4,7 +4,7 @@ function Nav() {
   return (
     
     
-          <ul className="flex fixed z-10 items-center border-b border-gray-200 bg-white text-sm  lg:px-10 top-16 lg:top-16 mt-px">
+          <ul className="flex fixed z-10 items-center w-full md:w-5/6 lg:w-[51.1%] border-b border-gray-200 bg-white text-sm  lg:px-10 top-16 lg:top-16 mt-px">
             <li className="flex items-center">
               <button
                 className="focus:outline-none mx-0 rounded-sm 
