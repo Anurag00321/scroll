@@ -63,6 +63,7 @@ function Post() {
       company: "",
       apply: "",
     });
+
   };
 
   useEffect(() => {
@@ -182,6 +183,7 @@ function Post() {
 
   function onCancel() {
     setShow1(false);
+    setShow2(false)
     setHidden(true);
     setCount(0);
     removeImage();
@@ -195,11 +197,11 @@ function Post() {
   }
 
   return (
-    <div className="lg:mt-16 mt-16 rounded">
+    <div className="lg:mt-[74px] mt-16 rounded">
       <div className="bg-gray-100 p-6 border-b border-gray-200">
         <div className="border rounded-lg border-gray-200 ">
           <div>
-            <div className=" rounded-lg border border-gray-100 focus-within:border-gray-100 relative rounded-t-lg lg:max-w-[630px] h-fit">
+            <div className=" rounded-lg border border-gray-100 focus-within:border-gray-100 relative rounded-t-lg w-full h-fit">
               <div className="flex flex-1 flex-col">
                 <div className="rounded-lg bg-white min-h-12 max-h-[620px] p-2 font-semibold text-gray-900 text-sm h-fit  resize-none placeholder:text-xs outline-none">
                   <form onChange={(e) => setCount(e.target.value.length)}>
@@ -442,12 +444,12 @@ function Post() {
                         </button>
 
                         {show2 ? (
-                          <div className="bg-white font-normal absolute mt-2 w-fit z-20 flex flex-col rounded-xl border-t-2 border-l-2 border-b-[6px] border-r-[6px] border-black">
-                            <div className="w-fit mx-2 overflow-hidden relative justify-center items-center h-[194px] mb-2">
+                          <div className="bg-white font-normal absolute w-96 z-20 flex flex-col rounded-xl border-t-2 border-l-2 border-b-[6px] border-r-[6px] border-black">
+                            <div className="w-fit mb-2 overflow-hidden relative justify-center items-center h-[194px] ">
                               {Context.map(({ name, image, desc, style }) => (
                                 <div
                                   key={name}
-                                  className="py-2 bg-transparent h-12"
+                                  className="my-2 hover:bg-gray-100 bg-transparent h-10"
                                 >
                                   <li
                                     className={`flex cursor-pointer h-10`}
@@ -475,10 +477,11 @@ function Post() {
                         ) : null}
                       </div>
                       <div>
+                        
                         <button
                           disabled={hidden}
                           type="submit"
-                          onClick={onSubmit}
+                          onClick={() => onSubmit()}
                           className="bg-green-600 hover:bg-green-700 disabled:cursor-not-allowed flex items-center leading-120 select-none h-8 px-4 ml-2 mx-2 py-0.5 text-center tracking-wide transition-all ease-in duration-75 outline-0 focus:outline-0 disabled:opacity-40 font-normal rounded w-20 border border-green-700 text-white text-md"
                         >
                           Share

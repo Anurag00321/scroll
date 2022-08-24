@@ -28,13 +28,14 @@ export default function Home() {
           <Sidebar />
           <div className="w-full md:w-5/6 border-gray-200 border-r">
             <div className="bg-white w-full border-l flex relative">
-              <div className="lg:w-[680px] border-r w-full outline-none mb-32 border-gray-200 relative mt-8 lg:mb-16 bg-white">
-                <Nav />
+              <div className="lg:w-[680px] xl:w-[1060px] border-r w-full outline-none mb-32 border-gray-200 relative mt-8 lg:mb-16 bg-white">
+                <Nav/>
                 <Post />
                 <Feed />
               </div>
+              <Aside />
               <div className="fixed -right-1 bg-gray-100">
-                <Aside />
+               
               </div>
             </div>
           </div>
